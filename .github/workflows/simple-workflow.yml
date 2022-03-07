@@ -34,6 +34,10 @@ jobs:
           echo test, and deploy your project.
       
       - name: Run a simple docker action
+        id: timer
         uses: actions/hello-world-docker-action@master
         with:
             who-to-greet: 'Mona the Octocat'
+            
+      - name: Echo time from last steps
+        run: echo ${{ steps.timer.output.time }}
