@@ -12,7 +12,7 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
-    uses: LiangRenDev/resuable-github-action-demo/.github/workflows/resuable.yml@main
+    uses: LiangRenDev/resuable-github-action-demo/.github/workflows/resuable.yml@LiangRenDev/patch-1
     secrets: 
       slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
 
