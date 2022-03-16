@@ -9,7 +9,7 @@ on:
 jobs:
   # This workflow contains a single job called "build"
   build:
-    uses: LiangRenDev/resuable-github-action-demo/.github/workflows/resuable.yml@feature/addResuable
+    uses: LiangRenDev/resuable-github-action-demo/.github/workflows/resuable.yml@feature/AddReusbale
     secrets: 
       slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
 
