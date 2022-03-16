@@ -6,13 +6,13 @@ on:
   workflow_dispatch:
   
   push: 
-    branches: [main]
+    branches: "**"
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
   build:
-    uses: LiangRenDev/resuable-github-action-demo/.github/workflows/resuable.yml@main
+    uses: LiangRenDev/resuable-github-action-demo/.github/workflows/resuable.yml@LiangRenDev/patch-1
     secrets: 
       slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
 
