@@ -17,7 +17,7 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - id: foo
-        uses: LiangRenDev/hello-world-composite-action@v1
+        uses: LiangRenDev/hello-world-composite-action@580d7033c141b4a417a4f05003d6d78a3bbdc1b8
         with:
           who-to-greet: 'Mona the Octocat'
       - run: echo random-number ${{ steps.foo.outputs.random-number }}
