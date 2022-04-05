@@ -11,9 +11,15 @@ on:
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
   # This workflow contains a single job called "build"
-  build:
-    uses: LiangRenDev/resuable-github-action-demo/.github/workflows/resuable.yml@main
-    secrets: 
-      slack_webhook: ${{ secrets.SLACK_WEBHOOK }}
-
+  hello_world_job:
+    runs-on: windows-latest
+    name: A job to say hello
+    steps:
+      - uses: actions/checkout@v3
+      - id: foo
+        uses: actions/hello-world-composite-action@v1
+        with:
+          who-to-greet: 'Mona the Octocat'
+      - run: echo random-number ${{ steps.foo.outputs.random-number }}
+        shell: pwsh
 
