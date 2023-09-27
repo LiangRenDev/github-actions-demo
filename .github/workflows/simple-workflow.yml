@@ -32,20 +32,29 @@ jobs:
         run: |
           node -v
 
-  build_dist:
+  build_dist_sub1:
     runs-on: windows-latest
     needs: initialize-code
     steps:
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
-          name: artifact-dist
-          path: ./dist
+          name: artifact-dist-sub1
+          path: ./dist/sub1
+  build_dist_sub2:
+    runs-on: windows-latest
+    needs: initialize-code
+    steps:
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: artifact-dist-sub2
+          path: ./dist/sub2
   # This workflow contains a single job called "build"
   hello_world_job:
     runs-on: windows-latest
     name: A job to say hello
-    needs: [build_cd, build_dist]
+    needs: [build_cd, build_dist_sub1, build_dist_sub2]
     steps:
       - uses: actions/checkout@v3
 
@@ -54,11 +63,16 @@ jobs:
         with:
           name: artifact-cd
           path: cd-test
-      - name: download infra
+      - name: download sub1
         uses: actions/download-artifact@v2
         with:
-          name: artifact-dist
-          path: dist-test
+          name: artifact-dist-sub1
+          path: dist-test/sub1
+      - name: download sub2
+        uses: actions/download-artifact@v2
+        with:
+          name: artifact-dist-sub2
+          path: dist-test/sub2
       - name: create destination folder and copy
         run: |
           mkdir space
