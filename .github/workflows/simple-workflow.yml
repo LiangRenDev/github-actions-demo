@@ -55,12 +55,12 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: artifact-dist-sub1
-          path: dist-test/
+          path: dist-test/sub1
       - name: download sub2
         uses: actions/download-artifact@v2
         with:
           name: artifact-dist-sub2
-          path: dist-test/
+          path: dist-test/sub2
       - name: create destination folder and copy
         run: |
           mkdir space
