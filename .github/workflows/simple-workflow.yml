@@ -10,19 +10,32 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  build_cd:
+  initialize-code:
     runs-on: windows-latest
     steps:
       - uses: actions/checkout@v3
+
+      - uses: actions/steup-node@v3
+        with:
+          node-version: "18.x"
+
+  build_cd:
+    runs-on: windows-latest
+    needs: initialize-code
+    steps:
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
           name: artifact-cd
           path: ./cd
+      - name: Print Node version
+        run: |
+          node -v
+
   build_dist:
     runs-on: windows-latest
+    needs: initialize-code
     steps:
-      - uses: actions/checkout@v3
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
