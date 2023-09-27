@@ -10,17 +10,47 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
+  build_cd:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: artifact-cd
+          path: ${{ github.workspace }}/cd
+  build_infra:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Upload artifact
+        uses: actions/upload-artifact@v1
+        with:
+          name: artifact-infra
+          path: ${{ github.workspace }}/infra
   # This workflow contains a single job called "build"
   hello_world_job:
     runs-on: windows-latest
     name: A job to say hello
+    needs: [build_cd, build_infra]
     steps:
       - uses: actions/checkout@v3
+
+      - name: download cd
+        uses: actions/download-artifact@v2
+        with:
+          name: artifact-cd
+          path: cd-test
+      - name: download infra
+        uses: actions/download-artifact@v2
+        with:
+          name: artifact-infra
+          path: infra-test
       - name: create destination folder and copy
         run: |
           mkdir space
-          Copy-Item -Path .\cd -Destination ./space -Recurse -Force
-          Copy-Item -Path .\dist -Destination ./space -Recurse -Force
+          Copy-Item -Path .\cd-test -Destination ./space -Recurse -Force
+          Copy-Item -Path .\dist-test -Destination ./space -Recurse -Force
 
       - uses: vimtor/action-zip@v1.1
         with:
