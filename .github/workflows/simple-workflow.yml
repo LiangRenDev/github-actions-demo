@@ -18,7 +18,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: artifact-cd
-          path: ${{ github.workspace }}/cd
+          path: ./cd
   build_infra:
     runs-on: windows-latest
     steps:
@@ -27,7 +27,7 @@ jobs:
         uses: actions/upload-artifact@v1
         with:
           name: artifact-infra
-          path: ${{ github.workspace }}/infra
+          path: ./infra
   # This workflow contains a single job called "build"
   hello_world_job:
     runs-on: windows-latest
