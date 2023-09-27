@@ -16,11 +16,18 @@ jobs:
     name: A job to say hello
     steps:
       - uses: actions/checkout@v3
+      - name: create destination folder and copy
+        run: |
+          mkdir space
+          Copy-Item -Path .\cd\* -Destination ./space -Recurse -Force
+          Copy-Item -Path .\dist\* -Destination ./space -Recurse -Force
+
       - uses: vimtor/action-zip@v1.1
         with:
           recursive: false
-          files: dist/ cd/
+          files: space/
           dest: result.zip
+
       - uses: actions/upload-artifact@v1
         with:
           name: my-artifact
