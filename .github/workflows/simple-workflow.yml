@@ -4,8 +4,8 @@ name: action-demo
 on:
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
-  
-  push: 
+
+  push:
     branches: [main]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
@@ -16,10 +16,11 @@ jobs:
     name: A job to say hello
     steps:
       - uses: actions/checkout@v3
-      - id: foo
-        uses: LiangRenDev/hello-world-composite-action@3d6e3eae21b65adee9ce185072124483c7c193d2
+      - uses: vimtor/action-zip@v1
         with:
-          who-to-greet: 'Mona the Octocat'
-      - run: echo random-number ${{ steps.foo.outputs.random-number }}
-        shell: pwsh
-
+          files: dist/ cd/
+          dest: result.zip
+      - uses: actions/upload-artifact@v1
+        with:
+          name: my-artifact
+          path: ${{ github.workspace }}/result.zip
