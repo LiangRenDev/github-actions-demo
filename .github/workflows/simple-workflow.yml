@@ -19,8 +19,8 @@ jobs:
       - name: create destination folder and copy
         run: |
           mkdir space
-          Copy-Item -Path .\cd\* -Destination ./space -Recurse -Force
-          Copy-Item -Path .\dist\* -Destination ./space -Recurse -Force
+          Copy-Item -Path .\cd -Destination ./space -Recurse -Force
+          Copy-Item -Path .\dist -Destination ./space -Recurse -Force
 
       - uses: vimtor/action-zip@v1.1
         with:
