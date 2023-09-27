@@ -18,6 +18,7 @@ jobs:
       - uses: actions/checkout@v3
       - uses: vimtor/action-zip@v1.1
         with:
+          recursive: false
           files: dist/ cd/
           dest: result.zip
       - uses: actions/upload-artifact@v1
