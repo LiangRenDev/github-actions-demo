@@ -54,7 +54,7 @@ jobs:
 
       - name: Extract cd-test
         run: |
-          Expand-Archive -Path "./cd-test.zip" -DestinationPath "./cd-test"
+          Expand-Archive -Path "./cd-test.zip" -DestinationPath "./"
 
       - name: download sub1
         uses: actions/download-artifact@v2
