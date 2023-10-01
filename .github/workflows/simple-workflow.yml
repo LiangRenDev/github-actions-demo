@@ -18,14 +18,14 @@ jobs:
       - uses: vimtor/action-zip@v1.1
         with:
           recursive: false
-          files: space/
-          dest: cd.zip
+          files: cd/
+          dest: cd-test.zip
 
       - name: Upload artifact
         uses: actions/upload-artifact@v1
         with:
           name: artifact-cd
-          path: cd.zip
+          path: cd-test.zip
 
   build_dist_sub1:
     runs-on: windows-latest
