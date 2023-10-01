@@ -54,6 +54,7 @@ jobs:
 
       - name: Extract cd-test
         run: |
+          ls
           Expand-Archive -Path "./cd-test.zip" -DestinationPath "./"
 
       - name: download sub1
