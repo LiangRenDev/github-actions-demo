@@ -18,7 +18,7 @@ jobs:
       - uses: vimtor/action-zip@v1.1
         with:
           recursive: false
-          files: cd/
+          files: cd/test-sub
           dest: cd-test.zip
 
       - name: Upload artifact
@@ -62,7 +62,7 @@ jobs:
       - name: Extract cd-test
         run: |
           ls
-          Expand-Archive -Path ".\cd-test.zip" -DestinationPath ".\"
+          Expand-Archive -Path ".\cd-test.zip" -DestinationPath ".\temp"
 
       - name: download sub1
         uses: actions/download-artifact@v2
