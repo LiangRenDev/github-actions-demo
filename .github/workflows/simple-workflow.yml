@@ -50,7 +50,12 @@ jobs:
         uses: actions/download-artifact@v2
         with:
           name: artifact-cd
-          path: cd-test
+          path: cd-test.zip
+
+      - name: Extract cd-test
+        run: |
+          Expand-Archive -Path "./cd-test.zip" -DestinationPath "./cd-test"
+
       - name: download sub1
         uses: actions/download-artifact@v2
         with:
