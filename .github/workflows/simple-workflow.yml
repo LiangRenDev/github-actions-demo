@@ -12,6 +12,9 @@ on:
       ref:
         description: "reference"
         required: false
+      octopusEnv: 
+         description: "run envrionment"
+         required: true
 
   push:
     branches: [main]
@@ -23,7 +26,7 @@ jobs:
     steps:
       - name: Print test
         run: |
-          ehco Test run
+          echo Test run
       - uses: actions/checkout@v3
 
       - uses: vimtor/action-zip@v1.1
