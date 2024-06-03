@@ -68,15 +68,13 @@ jobs:
       - name: test
         id: build
         run: sleep $(( RANDOM % 30)) && exit 1
-        
+        continue-on-error: true
 
-      - uses: mshick/add-pr-comment@v2
+      - uses: mainmatter/continue-on-error-comment@v1
         with:
-          message: |
-            **Hello**
-            🌏
-            **Main**
-            !
+           repo-token: ${{ secrets.GITHUB_TOKEN }}
+           outcome: ${{steps.build.outcome}}
+           test-id: Run Snyk Test
 
 
        
