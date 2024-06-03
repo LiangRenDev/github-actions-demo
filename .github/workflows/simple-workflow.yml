@@ -11,7 +11,7 @@ on:
       ref:
         description: "reference"
         required: false
-
+  pull_request:
   push:
     branches: [main]
 
@@ -65,11 +65,17 @@ jobs:
     permissions:
       pull-requests: write
     steps:
+      - name: test
+        id: build
+        run: sleep $(( RANDOM % 30)) && exit 
+        
+
       - uses: mshick/add-pr-comment@v2
         with:
           message: |
             **Hello**
             🌏
+            **Main**
             !
 
 
