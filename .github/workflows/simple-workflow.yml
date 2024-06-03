@@ -67,7 +67,7 @@ jobs:
     steps:
       - name: test
         id: build
-        run: sleep $(( RANDOM % 30)) && exit 
+        run: sleep $(( RANDOM % 30)) && exit 1
         
 
       - uses: mshick/add-pr-comment@v2
