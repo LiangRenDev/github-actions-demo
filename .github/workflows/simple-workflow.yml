@@ -69,14 +69,6 @@ jobs:
 
         run: sleep $(( RANDOM % 30)) && exit
         continue-on-error: true
-
-      - uses: mshick/add-pr-comment@v2
-        with:
-           message: |
-            **Hello**
-            🌏
-            **Leon**
-            !
       
       - uses: mshick/add-pr-comment@v2
         with:
