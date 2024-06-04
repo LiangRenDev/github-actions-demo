@@ -75,7 +75,7 @@ jobs:
         with:
            repo-token: ${{ secrets.GITHUB_TOKEN }}
            outcome: ${{steps.build.outcome}}
-           test-id: ${{steps.build.outcome}}
+           test-id: Sync code test ${{steps.build.outcome}}
 
 
        
