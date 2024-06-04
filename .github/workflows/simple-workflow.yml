@@ -70,12 +70,12 @@ jobs:
         continue-on-error: true
       
       - uses: mshick/add-pr-comment@v2
-        if: ${{steps.build.outcome}} == 'failed'
+        if: ${{steps.build.outcome}} != 'failed'
         with:
            message: |
             **Hello**
             🌏
-            **Brent**
+            **${{steps.build.outcome}}**
             !
 
        
