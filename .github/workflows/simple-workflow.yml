@@ -67,6 +67,7 @@ jobs:
     steps:
       - name: test
         id: build
+
         run: sleep $(( RANDOM % 30)) && exit 1
         continue-on-error: true
 
@@ -74,7 +75,7 @@ jobs:
         with:
            repo-token: ${{ secrets.GITHUB_TOKEN }}
            outcome: ${{steps.build.outcome}}
-           test-id: Run Snyk Test
+           test-id: ${{steps.build.outcome}}
 
 
        
