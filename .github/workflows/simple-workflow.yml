@@ -68,9 +68,14 @@ jobs:
         id: build
         run: exit 
         continue-on-error: true
+
+      - name: test2
+        id: build2
+        run: exit 1
+        continue-on-error: true
       
       - uses: mshick/add-pr-comment@v2
-        if: steps.build.outcome == 'failure'
+        if: steps.build.outcome == 'failure' || steps.build2.outcome == 'failure'
         with:
            message: |
             **Hello**
