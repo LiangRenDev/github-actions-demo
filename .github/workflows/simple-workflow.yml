@@ -66,11 +66,11 @@ jobs:
     steps:
       - name: test
         id: build
-
         run: sleep $(( RANDOM % 30)) && exit 1
         continue-on-error: true
       
       - uses: mshick/add-pr-comment@v2
+        if: ${{steps.build.outcome}} == 'failed'
         with:
            message: |
             **Hello**
