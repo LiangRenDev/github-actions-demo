@@ -68,7 +68,7 @@ jobs:
       - name: test
         id: build
 
-        run: sleep $(( RANDOM % 30)) && exit 1
+        run: sleep $(( RANDOM % 30)) && exit
         continue-on-error: true
 
       - uses: mainmatter/continue-on-error-comment@v1
