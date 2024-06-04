@@ -11,9 +11,8 @@ on:
       ref:
         description: "reference"
         required: false
-
   push:
-    branches: [main]
+    branches: ["**"]
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
@@ -61,17 +60,28 @@ jobs:
         run: |
           mkdir /testdir/test1
   publish_comment_in_pr:
-     runs-on: ubuntu-latest
-     steps:
-      - uses: actions/github-script@v6
+    runs-on: ubuntu-latest
+    permissions:
+      pull-requests: write
+    steps:
+      - name: test
+        id: build
+        run: exit 
+        continue-on-error: true
+
+      - name: test2
+        id: build2
+        run: exit 1
+        continue-on-error: true
+      
+      - uses: mshick/add-pr-comment@v2
+        if: steps.build.outcome == 'failure' || steps.build2.outcome == 'failure'
         with:
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: '👋 Thanks for reporting!'
-            })
+           message: |
+            **Hello**
+            🌏
+            **${{steps.build.outcome}}**
+            !
 
        
   # This workflow contains a single job called "build"
