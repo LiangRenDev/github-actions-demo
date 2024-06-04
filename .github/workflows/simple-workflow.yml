@@ -70,13 +70,13 @@ jobs:
         continue-on-error: true
       
       - uses: mshick/add-pr-comment@v2
-        if: ${{steps.build.outcome}} != 'failure'
+        if: steps.build.outcome != 'failure'
         with:
            message: |
             **Hello**
             🌏
             **${{steps.build.outcome}}**
-            !
+            
 
        
   # This workflow contains a single job called "build"
